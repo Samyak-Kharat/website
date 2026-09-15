@@ -1,0 +1,82 @@
+/* Design tokens. Component rules consume these — never raw hex. */
+
+:root {
+  /* Surface — pure black base, minimal lift between planes */
+  --surface-base: #000000;
+  --surface-muted: #0b0c0e;
+  --surface-raised: #101216;
+  --surface-inset: #060708;
+
+  --border-subtle: #1a1d23;
+  --border-strong: #2a2f38;
+
+  /* Text */
+  --text-primary: #fafbfd;
+  --text-secondary: #8a919b;
+  --text-tertiary: #5c636d;
+
+  /* Accent — cyan-teal. #22d3ee on #000 is ~11:1, AA at any size. */
+  --accent: #22d3ee;
+  --accent-strong: #06b6d4;
+  --accent-dim: rgba(34, 211, 238, 0.14);
+  --accent-glow: rgba(34, 211, 238, 0.35);
+  --accent-trace: rgba(34, 211, 238, 0.06);
+
+  /* Type */
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --text-2xs: 11px;
+  --text-xs: 12px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: 26px;
+  /* Section headings scale with the viewport too. Held fixed, they collided
+     with the h1's floor on narrow screens and the hierarchy went flat. */
+  --display-sm: clamp(26px, 4.2vw, 34px);
+  --display-md: 48px;
+  --display-lg: clamp(38px, 7vw, 68px);
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-loose: 1.75;
+
+  /* Space */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 128px;
+
+  /* Radius — tight. Engineering drawings, not app cards. */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+
+  /* Motion */
+  --dur-instant: 150ms;
+  --dur-fast: 200ms;
+  --dur-normal: 300ms;
+  --dur-slow: 600ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --measure: 68ch;
+  --container: 1120px;
+  --gutter: var(--space-5);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: var(--space-7);
+  }
+}

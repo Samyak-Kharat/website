@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Project — Samy</title>
+    <meta name="theme-color" content="#000000" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="nav" data-nav data-scrolled="true">
+      <div class="container">
+        <div class="nav__inner">
+          <a class="nav__mark" href="../index.html" data-mark></a>
+          <nav class="nav__links" aria-label="Sections">
+            <a class="nav__link" href="../index.html#work">Work</a>
+            <a class="nav__link" href="../index.html#contact">Contact</a>
+          </nav>
+        </div>
+      </div>
+    </header>
+
+    <canvas class="ambient" data-ambient aria-hidden="true"></canvas>
+
+    <main id="main" data-project="__SLUG__">
+      <section class="project-hero">
+        <div class="project-hero__media" data-hero-media></div>
+
+        <div class="project-hero__inner">
+          <div class="container">
+            <a class="back-link" href="../index.html#work">&larr; back to work</a>
+            <p class="project-hero__team" data-team></p>
+            <h1 data-title></h1>
+            <p class="project-hero__tagline" data-tagline></p>
+            <div class="project-meta" data-meta></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section__head"><h2>Overview</h2></div>
+          <div class="prose" data-reveal data-overview></div>
+        </div>
+      </section>
+
+      <section class="section" data-gallery-section>
+        <div class="container">
+          <div class="section__head"><h2>Gallery</h2></div>
+          <div class="gallery" data-reveal data-gallery></div>
+        </div>
+      </section>
+
+      <section class="section" data-specs-section>
+        <div class="container">
+          <div class="section__head"><h2>Technical specifications</h2></div>
+          <div class="specs" data-reveal data-specs></div>
+        </div>
+      </section>
+
+      <section class="section" data-results-section>
+        <div class="container">
+          <div class="section__head"><h2>Results</h2></div>
+          <ul class="results" data-reveal data-results></ul>
+          <div class="btn-row" data-links style="margin-top: var(--space-7)"></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__inner">
+        <p>&copy; <span data-year></span> <span data-footer-name></span></p>
+        <a class="link" href="../index.html#work">All projects</a>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/detail.js"></script>
+  </body>
+</html>

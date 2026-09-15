@@ -1,0 +1,275 @@
+/* Project detail page: hero, gallery, specs, results. */
+
+.project-hero {
+  position: relative;
+  min-height: 78svh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+  padding-block: var(--space-9) var(--space-8);
+}
+
+.project-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.project-hero__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Full colour, lifted a little — the robot is the subject here, so the photo
+     should carry the page rather than hide behind the overlay. */
+  filter: saturate(1.12) contrast(1.06) brightness(1.06);
+}
+
+.project-hero__media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Only as dark as the text needs: heavy at the bottom-left where the copy
+     sits, clearing quickly so the photo stays visible everywhere else. */
+  background: linear-gradient(
+      to top,
+      var(--surface-base) 2%,
+      rgb(0 0 0 / 0.78) 26%,
+      rgb(0 0 0 / 0.28) 62%,
+      rgb(0 0 0 / 0.12) 100%
+    ),
+    linear-gradient(to right, rgb(0 0 0 / 0.6) 0%, rgb(0 0 0 / 0.1) 62%),
+    /* Scrim behind the fixed nav, which otherwise sits on bare photo. */
+      linear-gradient(to bottom, rgb(0 0 0 / 0.8) 0, rgb(0 0 0 / 0) 110px);
+}
+
+.project-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/* Sits over the photo now, so the page-default tertiary grey is too faint. */
+.project-hero .back-link {
+  color: var(--text-secondary);
+}
+
+.project-hero .back-link:hover {
+  color: var(--accent);
+}
+
+.project-hero__team {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--accent);
+  margin-bottom: var(--space-4);
+}
+
+.project-hero h1 {
+  font-size: clamp(33px, 5.4vw, 54px);
+  max-width: 18ch;
+}
+
+.project-hero__tagline {
+  margin-top: var(--space-4);
+  max-width: 52ch;
+  color: var(--text-secondary);
+  font-size: var(--text-md);
+  line-height: var(--leading-loose);
+}
+
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-6) var(--space-8);
+  margin-top: var(--space-7);
+}
+
+/* Gallery */
+
+.gallery {
+  display: grid;
+  gap: var(--space-5);
+}
+
+@media (min-width: 760px) {
+  .gallery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* An odd number of items would leave a hole in the last row. Promoting the
+     first one to full width fixes the parity and leads with the best footage. */
+  .gallery .media--wide:first-child:nth-last-child(odd) {
+    grid-column: 1 / -1;
+  }
+}
+
+.media {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.media__el,
+.media__play {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--surface-inset);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.media--portrait .media__el,
+.media--portrait .media__play {
+  aspect-ratio: 9 / 16;
+  /* Capped so a vertical Short doesn't tower over the landscape clip beside it. */
+  max-height: 440px;
+  margin-inline: auto;
+  width: auto;
+  min-width: min(280px, 100%);
+}
+
+iframe.media__el {
+  border: 1px solid var(--border-subtle);
+}
+
+.media__caption {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--text-tertiary);
+}
+
+/* YouTube facade */
+
+.media__play {
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease);
+}
+
+.media__play:hover,
+.media__play:focus-visible {
+  border-color: var(--accent);
+}
+
+.media__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.72;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+
+.media__play:hover .media__thumb {
+  opacity: 0.9;
+}
+
+.media__play-icon {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  padding-left: 3px;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: var(--surface-base);
+  box-shadow: 0 0 26px var(--accent-glow);
+  transition: scale var(--dur-fast) var(--ease);
+}
+
+.media__play:hover .media__play-icon {
+  scale: 1.07;
+}
+
+/* Specs */
+
+.specs {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 640px) {
+  .specs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1000px) {
+  .specs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.spec {
+  padding: var(--space-5);
+  background: var(--surface-muted);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+}
+
+.spec__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--accent);
+  margin-bottom: var(--space-3);
+}
+
+.spec__value {
+  font-size: var(--text-md);
+  color: var(--text-primary);
+  line-height: var(--leading-snug);
+}
+
+.spec__note {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+}
+
+/* Results */
+
+.results {
+  display: grid;
+  gap: var(--space-4);
+  max-width: var(--measure);
+}
+
+.result {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--text-secondary);
+  line-height: var(--leading-loose);
+}
+
+.result::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.68em;
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  border-radius: var(--radius-sm);
+}
+
+/* Prose */
+
+.prose {
+  max-width: var(--measure);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.prose p {
+  color: var(--text-secondary);
+  line-height: var(--leading-loose);
+  font-size: var(--text-md);
+}

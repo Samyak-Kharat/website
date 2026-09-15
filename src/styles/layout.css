@@ -1,0 +1,337 @@
+/* Container, section rhythm, page-level grids. */
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section {
+  padding-block: var(--space-9);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.section:first-of-type {
+  border-top: none;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding-block: var(--space-10);
+  }
+}
+
+.section__head {
+  max-width: var(--measure);
+  margin-bottom: var(--space-7);
+}
+
+.section__lede {
+  margin-top: var(--space-4);
+  color: var(--text-secondary);
+  font-size: var(--text-md);
+  line-height: var(--leading-loose);
+}
+
+.section__lede p + p {
+  margin-top: var(--space-5);
+}
+
+/* Hero — full-bleed canvas, copy anchored left of centre. */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-top: none;
+}
+
+.hero__canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* Elliptical wash offset left, so the map stays legible at the right edge
+   where the LiDAR fan does its most interesting work. */
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      68% 78% at 14% 50%,
+      rgb(0 0 0 / 0.95) 0%,
+      rgb(0 0 0 / 0.88) 26%,
+      rgb(0 0 0 / 0.5) 48%,
+      rgb(0 0 0 / 0) 72%
+    ),
+    linear-gradient(to top, rgb(0 0 0 / 0.55) 0%, rgb(0 0 0 / 0) 22%);
+}
+
+/* Narrow screens have no room to the side, so the copy needs a full wash. */
+@media (max-width: 719px) {
+  .hero__veil {
+    background: linear-gradient(
+      to bottom,
+      rgb(0 0 0 / 0.9) 0%,
+      rgb(0 0 0 / 0.78) 45%,
+      rgb(0 0 0 / 0.5) 100%
+    );
+  }
+}
+
+/* The canvas sits underneath, so the overlay must not swallow clicks —
+   only the copy block itself does. */
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  pointer-events: none;
+}
+
+.hero__copy {
+  max-width: 34ch;
+  pointer-events: auto;
+}
+
+/* Everything except the name waits for the boot sequence. Opacity only, so
+   nothing reflows when it arrives. */
+.reveal {
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--dur-slow) var(--ease),
+    transform var(--dur-slow) var(--ease);
+}
+
+[data-booted] .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* The name starts centred over the boot screen and travels to its hero
+   position as the map arrives. JS measures the offset; the transition back to
+   `none` is what animates it home. Fade is opacity-only so it can't fight the
+   transform. */
+.hero__name {
+  opacity: 0;
+  animation: hero-name-in 700ms var(--ease) 120ms forwards;
+  transform: translate(var(--name-dx, 0px), var(--name-dy, 0px));
+  transition: transform 900ms var(--ease);
+  /* Shrink-wrap so centring the box centres the glyphs. A left-aligned block
+     starts at the same left edge either way, so nothing shifts on arrival. */
+  width: fit-content;
+}
+
+[data-booted] .hero__name {
+  transform: none;
+}
+
+@keyframes hero-name-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Boot panel centred under the name. The robot rides the bar, so the canvas
+   reads this element's box rather than assuming a position. */
+.hero__boot {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 3;
+  width: min(420px, 74vw);
+  transform: translate(-50%, 26px);
+  pointer-events: none;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+
+[data-booted] .hero__boot {
+  opacity: 0;
+}
+
+.hero__boot-track {
+  position: relative;
+  height: 2px;
+  background: var(--border-subtle);
+}
+
+.hero__boot-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.hero__boot-status {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  /* Clears the robot's scan fan, which overhangs the bar. */
+  margin-top: var(--space-7);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  color: var(--text-tertiary);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Ambient point field behind the body. Fixed, so it drifts independently of
+   page scroll, and never intercepts a click. */
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Sections sit above the field; the hero paints its own black so it covers it. */
+#main,
+.footer {
+  position: relative;
+  z-index: 1;
+}
+
+.hero {
+  background: var(--surface-base);
+}
+
+/* Reveal on scroll — transform and opacity only, so nothing reflows. */
+[data-reveal] > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms var(--ease) var(--reveal-delay, 0ms),
+    transform 600ms var(--ease) var(--reveal-delay, 0ms);
+}
+
+[data-reveal][data-shown] > * {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] > * {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* About: prose beside the live graph */
+.about__grid {
+  display: grid;
+  gap: var(--space-8);
+}
+
+@media (min-width: 900px) {
+  .about__grid {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+}
+
+/* Grid items default to min-width:auto, which would let the diagram's
+   min-width push the whole column wider than the screen. Zeroing it lets the
+   panel's own scroll container take the overflow instead. */
+.about__grid > *,
+.diagrams > * {
+  min-width: 0;
+}
+
+.diagrams {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* Projects */
+.project-grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+@media (min-width: 720px) {
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Stack: group label hangs left of its chips */
+.stack-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.stack-row {
+  display: grid;
+  gap: var(--space-3);
+  padding-block: var(--space-5);
+  border-top: 1px solid var(--border-subtle);
+}
+
+.stack-row:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+@media (min-width: 720px) {
+  .stack-row {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: var(--space-6);
+    align-items: baseline;
+  }
+}
+
+/* Contact */
+.contact__grid {
+  display: grid;
+  gap: var(--space-7);
+}
+
+@media (min-width: 720px) {
+  .contact__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-8);
+  }
+}
+
+/* Project detail page */
+.detail {
+  padding-block: var(--space-8) var(--space-9);
+}
+
+.detail h1 {
+  font-size: clamp(33px, 5vw, 46px);
+}
+
+.detail__meta {
+  display: grid;
+  gap: var(--space-5);
+  margin-block: var(--space-7);
+  padding-block: var(--space-5);
+  border-block: 1px solid var(--border-subtle);
+}
+
+@media (min-width: 720px) {
+  .detail__meta {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+}
+
+.detail__body {
+  max-width: var(--measure);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.detail__body p {
+  color: var(--text-secondary);
+  line-height: var(--leading-loose);
+}
