@@ -234,32 +234,6 @@ iframe.media__el {
   line-height: var(--leading-normal);
 }
 
-/* Results */
-
-.results {
-  display: grid;
-  gap: var(--space-4);
-  max-width: var(--measure);
-}
-
-.result {
-  position: relative;
-  padding-left: var(--space-5);
-  color: var(--text-secondary);
-  line-height: var(--leading-loose);
-}
-
-.result::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.68em;
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  border-radius: var(--radius-sm);
-}
-
 /* Prose */
 
 .prose {
