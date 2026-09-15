@@ -22,8 +22,14 @@ export const projects = [
       "During a match it ran the whole pipeline on its own: navigate to the ball zone, use computer vision to pick the correct ball, align with it through sensor feedback, execute the pick-and-place with the belt system, then travel to the silo zone to score. The electronics were built around custom PCBs, closed-loop motor drivers and modular interconnects, so the mini PC, the STM32 subsystem and the actuator boards integrated cleanly. Careful calibration of the odometry, IMU and belt control kept it stable in a fast-changing arena.",
     ],
 
+    overviewImage: {
+      src: "media/r2-2024/telemetry.webp",
+      alt: "Foxglove telemetry view of R2's odometry and navigation during a test run",
+    },
+
     gallery: [
       { kind: "video", src: "media/r2-2024/run.mp4", caption: "R2 running a match" },
+      { kind: "video", src: "media/r2-2024/dashboard.webm", caption: "Navigation dashboard during a test run" },
       { kind: "image", src: "media/r2-2024/team.webp", caption: "MIT Tech Team, 2024" },
       { kind: "youtube", id: "ZlPmcB6rSR4", caption: "The R2 journey" },
     ],
@@ -82,8 +88,14 @@ export const projects = [
       "In matches it ran as a manual robot, with an STM32 as the brain and an IMU handling angle correction. ODrive drivers and motors drove the shooting mechanism. It was the only robot at DD Robocon capable of performing a dunk.",
     ],
 
+    overviewImage: {
+      src: "media/jump-bot/overview.jpeg",
+      alt: "Jump Bot's shooting mechanism lined up on the hoop during testing",
+    },
+
     gallery: [
       { kind: "video", src: "media/jump-bot/dunk.mp4", caption: "The dunk" },
+      { kind: "image", src: "media/jump-bot/lidar-rig.jpeg", caption: "LiDAR auto-aim rig during testing" },
       { kind: "youtube", id: "ubrNTWUxuLw", portrait: true, caption: "Build progress" },
     ],
 
@@ -140,8 +152,14 @@ export const projects = [
       "On top of that sat a decision-making algorithm that chose which path to take through the arena and which box to pick up, so the robot handled route and payload selection on its own rather than following a fixed script.",
     ],
 
+    overviewImage: {
+      src: "media/r2-2026/overview.jpeg",
+      alt: "R2's step-climbing mechanism and mecanum drive, fully assembled",
+    },
+
     gallery: [
       { kind: "video", src: "media/r2-2026/step.mp4", caption: "Climbing a step" },
+      { kind: "video", src: "media/r2-2026/siderun.mp4", caption: "A full run, side camera" },
       { kind: "youtube", id: "9kkgwjXrWwE", caption: "The 2026 journey" },
     ],
 

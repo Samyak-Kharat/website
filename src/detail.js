@@ -134,6 +134,20 @@ function render() {
   renderHero();
   set("[data-overview]", project.overview.map((p) => `<p>${esc(p)}</p>`).join(""));
 
+  const overviewMedia = document.querySelector("[data-overview-media]");
+  if (overviewMedia) {
+    if (project.overviewImage) {
+      const img = new Image();
+      img.src = asset(project.overviewImage.src);
+      img.alt = project.overviewImage.alt ?? project.title;
+      img.loading = "lazy";
+      overviewMedia.append(img);
+    } else {
+      overviewMedia.remove();
+      overviewMedia.closest(".overview__grid")?.classList.add("overview__grid--text-only");
+    }
+  }
+
   section("[data-gallery-section]", project.gallery?.length);
   if (project.gallery?.length) {
     set("[data-gallery]", project.gallery.map(galleryItem).join(""));

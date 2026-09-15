@@ -30,6 +30,16 @@ function renderProfile() {
   fill("[data-blurb]", esc(profile.blurb));
   fill("[data-about]", profile.about.map((p) => `<p>${esc(p)}</p>`).join(""));
 
+  const photoMount = document.querySelector("[data-contact-photo]");
+  if (photoMount && profile.photo) {
+    const img = new Image();
+    img.className = "contact__photo";
+    img.src = profile.photo;
+    img.alt = profile.name;
+    img.loading = "lazy";
+    photoMount.append(img);
+  }
+
   fill(
     "[data-education]",
     profile.education

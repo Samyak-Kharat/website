@@ -2,6 +2,7 @@ export const profile = {
   name: "Samyak Kharat",
   mark: "samyak kharat",
   role: "Robotics Control Developer",
+  photo: "media/profile/face.webp",
 
   blurb:
     "I build robotic systems across the stack — from embedded control and real-time systems to perception, planning, and navigation.",

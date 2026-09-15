@@ -84,6 +84,34 @@
   margin-top: var(--space-7);
 }
 
+/* Overview */
+
+.overview__grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+@media (min-width: 760px) {
+  .overview__grid {
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+    align-items: start;
+  }
+
+  .overview__grid--text-only {
+    grid-template-columns: 1fr;
+  }
+}
+
+.overview__media img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  background: var(--surface-inset);
+}
+
 /* Gallery */
 
 .gallery {
