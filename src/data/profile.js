@@ -8,8 +8,8 @@ export const profile = {
     "I build robotic systems across the stack — from embedded control and real-time systems to perception, planning, and navigation.",
 
   about: [
-    "I'm a Robotics Control Developer at MIT World Peace University, working on the MIT Tech Team's robots for DD Robocon. Over four seasons I've built autonomous navigation stacks, a LiDAR-based auto-aim system, computer-vision pipelines for detecting and sorting balls, and the embedded control that sits under all of it — placing AIR 2 in 2023, AIR 3 in 2024 and AIR 2 in 2026.",
-    "Most of my work lives at the seam between ROS 2 and hardware: Nav2, ros2_control and mecanum/omni drive on one side, STM32 and ESP32 firmware over CAN, UART and PWM on the other, with odometry and the transform tree holding the two together. The interesting failures are almost never in the planner — they're in timing, frames, and the assumptions nobody wrote down.",
+    "I'm a robotics engineer working on autonomous systems and embedded control, most recently as a Robotics Control Developer on Tech Team's robots for DD Robocon, where our systems placed AIR 2 in 2023, AIR 3 in 2024, and AIR 2 in 2026.",
+    "My interests lie at the intersection of perception and control — building autonomous systems that can navigate and act reliably in real, physical environments. My work focuses on the layer where ROS 2 meets embedded hardware: navigation, sensor fusion, and the low-level control that has to run correctly in real time, not just in simulation.",
   ],
 
   // `handle` is what's shown; `href` is where it goes. Empty entries are
@@ -56,7 +56,7 @@ export const profile = {
 
   experience: [
     {
-      role: "Robotics Control Developer",
+      role: "Autonomous Robot Lead",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2026",
       points: [
@@ -72,7 +72,7 @@ export const profile = {
       ],
     },
     {
-      role: "Robotics Control Developer",
+      role: "Controls & Systems Lead",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2025",
       points: [
@@ -81,7 +81,7 @@ export const profile = {
       ],
     },
     {
-      role: "Robotics Control Developer",
+      role: "ROS2 Developer",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2024",
       points: [
@@ -89,7 +89,7 @@ export const profile = {
       ],
     },
     {
-      role: "Robotics Control Developer",
+      role: "Embedded Systems Developer",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2023",
       points: [
@@ -120,6 +120,10 @@ export const profile = {
         "GitHub Actions",
         "MuJoCo",
       ],
+    },
+    {
+      group: "Perception",
+      items: ["OpenCV", "Object Detection", "YOLO", "Sensor Fusion", "Odometry"],
     },
     {
       group: "Embedded",
