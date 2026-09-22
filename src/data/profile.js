@@ -56,7 +56,7 @@ export const profile = {
 
   experience: [
     {
-      role: "Autonomous Robot Lead",
+      role: "Lead — Head of the Bot",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2026",
       points: [
@@ -64,7 +64,7 @@ export const profile = {
       ],
     },
     {
-      role: "OpenCV Workshop Instructor",
+      role: "Mentor — OpenCV Workshop",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2025 – 2026",
       points: [
@@ -72,7 +72,7 @@ export const profile = {
       ],
     },
     {
-      role: "Controls & Systems Lead",
+      role: "Senior Engineer",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2025",
       points: [
@@ -81,7 +81,7 @@ export const profile = {
       ],
     },
     {
-      role: "ROS2 Developer",
+      role: "Engineer",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2024",
       points: [
@@ -89,7 +89,7 @@ export const profile = {
       ],
     },
     {
-      role: "Embedded Systems Developer",
+      role: "Trainee Engineer",
       org: "MIT Tech Team (MTT) — Robocon",
       period: "2023",
       points: [
